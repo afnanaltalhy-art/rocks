@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مهمة الإطلاق | أسبوع الفضاء العالمي ٢٠٢٦</title>
+<style>
+:root{--ink:#06111f;--navy:#091b31;--navy2:#102b49;--cyan:#54e6ef;--cyan2:#16a9ba;--gold:#e8c676;--white:#f8fdff;--muted:#a9c2d3;--green:#42d69b}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Tahoma,Arial,sans-serif;background:#040b14;color:var(--white)}
+body{background:radial-gradient(circle at 20% 10%,#173b62 0,#071421 38%,#02070d 100%);min-height:100vh}
+.sky{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.sky:before,.sky:after{content:"";position:absolute;inset:-20%;background-image:radial-gradient(#fff 1px,transparent 1.5px);background-size:48px 48px;opacity:.18;transform:rotate(8deg)}
+.sky:after{background-size:83px 83px;opacity:.12;transform:rotate(-11deg)}
+.app{max-width:1180px;margin:auto;padding:22px;position:relative;z-index:2}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
+.brand{text-align:right}.brand .kicker{font-size:12px;letter-spacing:.4px;color:var(--cyan)}.brand h1{margin:2px 0;font-size:clamp(28px,5vw,50px)}.brand p{margin:0;color:var(--muted)}
+.pill{border:1px solid #ffffff22;background:#ffffff0b;border-radius:999px;padding:9px 14px;color:#d8edf7;font-size:13px}
+.panel{background:linear-gradient(145deg,#0d2036dd,#071525e8);border:1px solid #7bdde91e;box-shadow:0 25px 80px #0008,inset 0 1px #ffffff12;border-radius:28px;overflow:hidden}
+.grid{display:grid;grid-template-columns:1.45fr .75fr;min-height:660px}
+@media(max-width:850px){.grid{grid-template-columns:1fr}.side{order:-1}}
+.main{padding:22px}.side{padding:22px;background:linear-gradient(#0e2842cc,#071522cc);border-right:1px solid #ffffff10}
+.step{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px;margin-bottom:15px}.dot{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 15px var(--cyan)}
+h2{font-size:25px;margin:7px 0 10px}.lead{color:#c5d9e5;line-height:1.9;margin:0 0 16px}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}.choice{border:1px solid #ffffff18;background:#ffffff08;border-radius:20px;padding:18px;cursor:pointer;transition:.25s;text-align:right}.choice:hover{transform:translateY(-3px);border-color:#54e6ef77}.choice.sel{background:linear-gradient(135deg,#153b54,#0d5662);border-color:var(--cyan);box-shadow:0 0 0 3px #54e6ef15}.ico{font-size:38px;float:left}.choice b{font-size:19px}.choice span{display:block;color:var(--muted);font-size:13px;margin-top:6px;line-height:1.6}
+.btn{border:0;border-radius:16px;padding:14px 23px;font-weight:700;font-size:17px;cursor:pointer;background:linear-gradient(135deg,var(--cyan2),#14738e);color:white;box-shadow:0 10px 30px #0ca8bd35}.btn:disabled{opacity:.35;cursor:not-allowed}.ghost{background:#ffffff0d;border:1px solid #ffffff1c;box-shadow:none}
+.stage{height:480px;border-radius:24px;position:relative;overflow:hidden;background:linear-gradient(#06101d 0 62%,#12263b 62% 66%,#322f2a 66%);border:1px solid #ffffff12;margin-top:12px}
+.earthglow{position:absolute;width:700px;height:220px;border-radius:50%;background:#1b5475;bottom:-165px;left:50%;transform:translateX(-50%);box-shadow:0 -12px 50px #1e87a855}
+.moon{position:absolute;width:65px;height:65px;border-radius:50%;background:#e6e0d2;left:55px;top:55px;box-shadow:inset -13px -9px #bfb9ac,0 0 35px #fff2}
+.pad{position:absolute;bottom:54px;left:50%;transform:translateX(-50%);width:170px;height:10px;border-radius:8px;background:#8494a1}.tower{position:absolute;bottom:63px;left:calc(50% + 55px);height:135px;width:8px;background:#71808b}.tower:after{content:"";position:absolute;width:58px;height:5px;background:#71808b;top:25px;right:0}
+.rocket{position:absolute;bottom:61px;left:50%;transform:translateX(-50%);font-size:94px;filter:drop-shadow(0 12px 16px #000);transition:bottom 4.2s cubic-bezier(.22,.7,.3,1),transform 4.2s}
+.rocket.launch{bottom:540px;transform:translateX(-50%) scale(.52)}
+.flame{position:absolute;bottom:42px;left:50%;transform:translateX(-50%);font-size:50px;opacity:0;transition:.3s}.flame.on{opacity:1;animation:flick .15s infinite alternate}@keyframes flick{from{transform:translateX(-50%) scale(.8)}to{transform:translateX(-50%) scale(1.15)}}
+.count{position:absolute;inset:0;display:grid;place-items:center;font-size:125px;font-weight:800;text-shadow:0 0 50px #54e6efaa}
+.telemetry{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.meter{background:#ffffff08;border:1px solid #ffffff12;border-radius:15px;padding:12px;text-align:center}.meter small{color:var(--muted);display:block}.meter b{font-size:19px;color:#dffcff}
+.status{min-height:62px;margin-top:12px;padding:13px 16px;border-radius:16px;background:#ffffff08;color:#d9f4f6;line-height:1.7}
+.side h3{margin:0 0 14px}.timeline{position:relative;padding-right:17px}.timeline:before{content:"";position:absolute;right:3px;top:7px;bottom:7px;width:2px;background:#ffffff14}.item{position:relative;padding:0 18px 20px 0;color:#91aabd}.item:before{content:"";position:absolute;right:-18px;top:5px;width:9px;height:9px;border-radius:50%;background:#38556e;border:2px solid #102a43}.item.active{color:white}.item.active:before{background:var(--cyan);box-shadow:0 0 14px var(--cyan)}.item.done{color:#aeead1}.item.done:before{background:var(--green)}
+.missionCard{margin-top:20px;border:1px solid #e8c67644;background:linear-gradient(135deg,#e8c67610,#ffffff05);border-radius:20px;padding:16px}.missionCard small{color:var(--gold)}.missionCard b{display:block;font-size:18px;margin-top:5px}
+.hidden{display:none!important}
+.quizbox{max-width:760px;margin:10px auto}.q{background:#ffffff08;border:1px solid #ffffff13;border-radius:20px;padding:17px;margin:12px 0}.ans{display:block;width:100%;text-align:right;background:#eefcff;color:#10243a;border:0;border-radius:13px;padding:13px;margin:8px 0;font-size:16px;cursor:pointer}.ans.ok{background:#2c9d72;color:#fff}.ans.bad{background:#b94a55;color:#fff}
+.badge{margin:20px auto;padding:25px;border-radius:24px;max-width:570px;text-align:center;background:linear-gradient(135deg,#183b55,#0d5662);border:1px solid #e8c67688;box-shadow:0 20px 50px #0005}.badge .star{font-size:48px}.badge b{font-size:27px;color:#fff3ca}.badge p{color:#d3ebef}
+.footer{text-align:center;color:#6f899b;font-size:12px;padding:14px}
+
+/* مركبة إطلاق تعليمية متعددة المراحل */
+.rocket{position:absolute;bottom:62px;left:50%;transform:translateX(-50%);width:82px;height:245px;filter:drop-shadow(0 14px 16px #0009);transition:bottom 4.2s cubic-bezier(.22,.7,.3,1),transform 4.2s;z-index:4}
+.payload-stage{position:absolute;top:0;left:16px;width:50px;height:72px;background:linear-gradient(90deg,#d9e4ea,#fff,#b7c6ce);border-radius:50% 50% 8px 8px;transition:transform 1.1s ease,opacity .8s}
+.nose{position:absolute;top:-36px;left:0;border-left:25px solid transparent;border-right:25px solid transparent;border-bottom:40px solid #eef6f8}
+.payload-label,.upper-stage span,.first-stage span{position:absolute;white-space:nowrap;font-size:9px;color:#062139;background:#dffaffdd;border-radius:8px;padding:2px 5px;right:58px;top:24px}
+.upper-stage{position:absolute;top:72px;left:13px;width:56px;height:69px;background:linear-gradient(90deg,#cbd9df,#fff,#aebec7);border-top:5px solid #17a9ba;border-bottom:4px solid #1a354a;transition:transform 1.1s ease,opacity .8s}
+.upper-stage span{top:21px;right:64px}
+.first-stage{position:absolute;top:141px;left:9px;width:64px;height:103px;background:linear-gradient(90deg,#b9cbd3,#fff,#a3b6bf);border-top:5px solid #e8c676;border-radius:3px 3px 12px 12px;transition:transform 1.1s ease,opacity .8s}
+.first-stage span{top:34px;right:72px}
+.fin{position:absolute;bottom:3px;width:20px;height:40px;background:#17a9ba}.fin-r{right:-15px;clip-path:polygon(0 0,100% 100%,0 100%)}.fin-l{left:-15px;clip-path:polygon(100% 0,100% 100%,0 100%)}
+.rocket.launch{bottom:520px;transform:translateX(-50%) scale(.68)}
+.rocket.separate1 .first-stage{transform:translateY(115px) rotate(8deg);opacity:.25}
+.rocket.separate2 .upper-stage{transform:translateY(92px) rotate(-7deg);opacity:.2}
+.rocket.separate2 .payload-stage{transform:translateY(-25px)}
+.flame{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);width:42px;height:70px;opacity:0;z-index:3}.flame.on{opacity:1}.flame i{position:absolute;top:0;width:13px;height:62px;border-radius:50%;background:linear-gradient(#fff6a8,#ff9d21,#f14b22,transparent);filter:blur(1px);animation:flick .14s infinite alternate}.flame i:nth-child(1){left:1px}.flame i:nth-child(2){left:14px;height:70px}.flame i:nth-child(3){left:27px}
+.sepbox{margin-top:12px;background:linear-gradient(135deg,#0c2b45,#0d4853);border:1px solid #54e6ef55;border-radius:18px;padding:14px 16px;line-height:1.8;color:#dffaff}
+.sepbox b{color:#fff3bd}.sepbox .mini{color:#9fc5d3;font-size:13px}
+
+/* مشهد فصل تعليمي مرئي */
+.stage.separation-view .rocket{bottom:145px!important;transform:translateX(-50%) scale(.92)!important;transition:all 1s ease}
+.stage.separation-view .flame{opacity:0!important}
+.stage.separation-view .rocket.separate1 .first-stage{transform:translateY(145px) rotate(7deg)!important;opacity:1!important}
+.stage.separation-view .rocket.separate1 .upper-stage,
+.stage.separation-view .rocket.separate1 .payload-stage{transform:translateY(-18px)!important}
+.stage.separation-view .rocket.separate2 .first-stage{transform:translateY(170px) rotate(9deg)!important;opacity:.55!important}
+.stage.separation-view .rocket.separate2 .upper-stage{transform:translateY(82px) rotate(-5deg)!important;opacity:1!important}
+.stage.separation-view .rocket.separate2 .payload-stage{transform:translateY(-70px)!important;opacity:1!important}
+.stage-label{position:absolute;z-index:10;background:#071a2ddd;border:1px solid #54e6ef88;color:white;border-radius:12px;padding:7px 10px;font-size:12px;box-shadow:0 8px 25px #0005;opacity:0;transition:.5s}
+.stage-label.show{opacity:1}.lab-payload{top:55px;right:55px}.lab-upper{top:190px;right:45px}.lab-first{bottom:42px;right:55px}
+.sep-arrow{position:absolute;z-index:9;color:#e8c676;font-size:36px;font-weight:bold;opacity:0;transition:.5s}.sep-arrow.show{opacity:1;animation:pulse .7s infinite alternate}@keyframes pulse{from{transform:translateY(-5px)}to{transform:translateY(8px)}}
+.arrow1{left:calc(50% - 18px);bottom:105px}.arrow2{left:calc(50% - 18px);top:205px}
+</style></head>
+<body><div class="sky"></div><div class="app">
+<div class="topbar"><div class="brand"><div class="kicker">أسبوع الفضاء العالمي ٢٠٢٦</div><h1>مهمة الإطلاق 🚀</h1><p>محاكاة تفاعلية لمركبات الإطلاق • Rocket Revolution</p></div><div class="pill">المرحلة الابتدائية</div></div>
+<div class="panel"><div class="grid">
+<main class="main">
+<section id="intro"><div class="step"><i class="dot"></i> المهمة ٠١ • تجهيز الحمولة</div><h2>اختاري مهمة الصاروخ</h2><p class="lead">أنتِ الآن ضمن فريق المهمة. اختاري الحمولة التي ستنقلها مركبة الإطلاق إلى الفضاء، ثم ابدئي إجراءات الإطلاق.</p>
+<div class="choices"><div class="choice" onclick="pick(this,'قمر صناعي','للاتصالات ومراقبة الأرض')"><div class="ico">🛰️</div><b>قمر صناعي</b><span>حمولة تستخدم في الاتصالات ومراقبة الأرض.</span></div><div class="choice" onclick="pick(this,'مركبة استكشاف','لاستكشاف الأجرام والبيئات الفضائية')"><div class="ico">🔭</div><b>مركبة استكشاف</b><span>حمولة تساعد العلماء على الاستكشاف وجمع المعلومات.</span></div></div>
+<button class="btn" id="start" disabled onclick="prepare()">اعتماد الحمولة وبدء المهمة</button></section>
+
+<section id="flight" class="hidden"><div class="step"><i class="dot"></i> المهمة ٠٢ • منصة الإطلاق</div>
+<div class="stage"><div class="moon"></div><div class="earthglow"></div><div class="tower"></div><div class="pad"></div><div id="rocket" class="rocket">
+  <div id="payloadStage" class="payload-stage"><div class="nose"></div><div class="payload-label">الحمولة</div></div>
+  <div id="upperStage" class="upper-stage"><span>المرحلة الثانية</span></div>
+  <div id="firstStage" class="first-stage"><span>المرحلة الأولى</span><div class="fin fin-r"></div><div class="fin fin-l"></div></div>
+</div>
+<div id="flame" class="flame"><i></i><i></i><i></i></div><div id="count" class="count"></div>
+<div id="labPayload" class="stage-label lab-payload">الحمولة • تواصل المهمة</div>
+<div id="labUpper" class="stage-label lab-upper">المرحلة الثانية • تنفصل لاحقًا</div>
+<div id="labFirst" class="stage-label lab-first">المرحلة الأولى • انتهى دورها</div>
+<div id="arrow1" class="sep-arrow arrow1">↓</div>
+<div id="arrow2" class="sep-arrow arrow2">↓</div>
+</div>
+<div class="telemetry"><div class="meter"><small>الارتفاع</small><b id="alt">٠ كم</b></div><div class="meter"><small>الحالة</small><b id="state">جاهز</b></div><div class="meter"><small>الحمولة</small><b id="pay">—</b></div></div>
+<div class="status" id="status">جاري فحص أنظمة المهمة...</div>
+<div id="sepExplain" class="sepbox hidden"><b>ما معنى الفصل؟</b><br>
+<span id="sepText"></span>
+<div class="mini">عندما تنتهي مرحلة من مهمتها تُفصل عن بقية المركبة؛ فيخف الوزن وتواصل المرحلة التالية دفع الحمولة نحو وجهتها.</div></div>
+<button class="btn hidden" id="launch" onclick="launchMission()">إطلاق المركبة</button></section>
+
+<section id="quiz" class="hidden"><div class="step"><i class="dot"></i> المهمة ٠٣ • التحقق من التعلم</div><h2>المهمة نجحت… بقي اختبار المهندسة!</h2><div class="quizbox">
+<div class="q"><b>ما المهمة الأساسية لمركبة الإطلاق؟</b><button class="ans" onclick="answer(this,true)">نقل الحمولة من الأرض باتجاه الفضاء</button><button class="ans" onclick="answer(this,false)">التنقل داخل المدرسة</button></div>
+<div class="q"><b>أي حمولة يمكن أن تنقلها مركبة الإطلاق؟</b><button class="ans" onclick="answer(this,true)">قمر صناعي أو مركبة استكشاف</button><button class="ans" onclick="answer(this,false)">أثاث الفصل</button></div></div>
+<div id="badge" class="badge hidden"><div class="star">⭐</div><b>مهندسة فضاء صغيرة</b><p>أتممتِ مهمة الإطلاق بنجاح وفهمتِ دور مركبات الإطلاق.</p><div id="missionResult"></div><button class="btn ghost" onclick="location.reload()">تنفيذ مهمة جديدة</button></div></section>
+</main>
+<aside class="side"><h3>مركز التحكم بالمهمة</h3><div class="timeline"><div id="t1" class="item active"><b>اختيار الحمولة</b><br><small>تحديد هدف المهمة</small></div><div id="t2" class="item"><b>العد التنازلي</b><br><small>الاستعداد للإطلاق</small></div><div id="t3" class="item"><b>الإطلاق والصعود</b><br><small>مغادرة منصة الإطلاق</small></div><div id="t4" class="item"><b>انفصال الحمولة</b><br><small>بدء المهمة الفضائية</small></div><div id="t5" class="item"><b>اختبار المهندسة</b><br><small>التحقق من التعلم</small></div></div>
+<div class="missionCard"><small>بيانات المهمة</small><b id="sidePayload">لم تُحدد الحمولة بعد</b><p id="sideDesc">اختاري حمولة لبدء المهمة.</p></div>
+</aside></div><div class="footer">الابتدائية والمتوسطة الأولى بصخيبرة - قطاع الحناكية • إشراف أ. أفنان الطلحي - رائدة نشاط المرحلة الابتدائية</div></div></div>
+<script>
+let payload='',desc='',correct=0;
+function done(id){let e=document.getElementById(id);e.classList.remove('active');e.classList.add('done')}
+function active(id){document.querySelectorAll('.item').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function pick(el,p,d){document.querySelectorAll('.choice').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');payload=p;desc=d;document.getElementById('start').disabled=false;document.getElementById('sidePayload').textContent=p;document.getElementById('sideDesc').textContent=d}
+function prepare(){done('t1');active('t2');document.getElementById('intro').classList.add('hidden');document.getElementById('flight').classList.remove('hidden');document.getElementById('pay').textContent=payload;let c=document.getElementById('count'),n=5;c.textContent=n;document.getElementById('status').textContent='بدأ العد التنازلي. تأكدي من جاهزية الحمولة.';let timer=setInterval(()=>{n--;if(n>0)c.textContent=n;else{clearInterval(timer);c.textContent='جاهز';document.getElementById('status').textContent='اكتملت الفحوصات. المركبة جاهزة للإطلاق.';document.getElementById('launch').classList.remove('hidden')}},800)}
+function launchMission(){
+ done('t2');active('t3');
+ document.getElementById('launch').classList.add('hidden');
+ let r=document.getElementById('rocket'), f=document.getElementById('flame'),
+     st=document.getElementById('status'), ex=document.getElementById('sepExplain'),
+     tx=document.getElementById('sepText'), stage=document.querySelector('.stage');
+ r.classList.add('launch'); f.classList.add('on');
+ document.getElementById('state').textContent='صعود';
+ st.textContent='الإطلاق: المرحلة الأولى تدفع المركبة إلى أعلى.';
+ let altN=0, alt=setInterval(()=>{altN+=10;document.getElementById('alt').textContent=altN+' كم';if(altN>=80)clearInterval(alt)},420);
+
+ setTimeout(()=>{
+   /* نعيد المركبة إلى منتصف الشاشة خصيصًا لشرح الفصل */
+   stage.classList.add('separation-view'); r.classList.remove('launch'); f.classList.remove('on');
+   document.getElementById('state').textContent='استعداد للفصل';
+   st.textContent='توقفي وراقبي: ستنفصل أجزاء المركبة أمامك واحدًا بعد الآخر.';
+   ex.classList.remove('hidden');
+   tx.innerHTML='<b>المركبة تتكون من مراحل.</b> عندما تنتهي كل مرحلة من وقودها ودورها، تُفصل حتى لا تحمل المركبة وزنًا غير ضروري.';
+ },2600);
+
+ setTimeout(()=>{
+   r.classList.add('separate1'); done('t3'); active('t4');
+   document.getElementById('labFirst').classList.add('show');
+   document.getElementById('labUpper').classList.add('show');
+   document.getElementById('arrow1').classList.add('show');
+   document.getElementById('state').textContent='الفصل الأول';
+   st.textContent='١) انفصلت المرحلة الأولى بوضوح إلى أسفل.';
+   tx.innerHTML='<b>الفصل الأول:</b> انتهت مهمة المرحلة الأولى، فتسقط بعيدًا. المرحلة الثانية تبقى متصلة بالحمولة وتواصل الرحلة.';
+ },4300);
+
+ setTimeout(()=>{
+   document.getElementById('arrow1').classList.remove('show');
+   r.classList.add('separate2');
+   document.getElementById('labPayload').classList.add('show');
+   document.getElementById('arrow2').classList.add('show');
+   document.getElementById('state').textContent='الفصل الثاني';
+   st.textContent='٢) الآن انفصلت المرحلة الثانية، وبقيت الحمولة وحدها.';
+   tx.innerHTML='<b>الفصل الثاني:</b> بعد أن تنهي المرحلة الثانية دورها تنفصل أيضًا. الحمولة هي الجزء الذي نريد إيصاله إلى مهمته الفضائية.';
+ },6900);
+
+ setTimeout(()=>{
+   document.getElementById('arrow2').classList.remove('show');
+   st.textContent='٣) اكتمل الفصل: الحمولة تتابع مهمتها الفضائية.';
+   tx.innerHTML='<b>النتيجة:</b> المرحلة الأولى منفصلة، والمرحلة الثانية منفصلة، والحمولة ظاهرة مستقلة في أعلى المشهد.';
+   document.getElementById('state').textContent='حمولة حرة';
+ },9300);
+
+ setTimeout(()=>{
+   done('t4');active('t5');
+   document.getElementById('flight').classList.add('hidden');
+   document.getElementById('quiz').classList.remove('hidden');
+ },12000);
+}
+function answer(btn,good){let q=btn.parentElement;if(q.dataset.done)return;if(good){btn.classList.add('ok');btn.textContent+=' ✓';q.dataset.done='1';correct++;if(correct===2){done('t5');document.getElementById('badge').classList.remove('hidden');document.getElementById('missionResult').textContent='حمولة مهمتك: '+payload}}else{let old=btn.textContent;btn.classList.add('bad');btn.textContent='ليست الإجابة الصحيحة — حاولي مرة أخرى';setTimeout(()=>{btn.classList.remove('bad');btn.textContent=old},1100)}}
+</script></body></html>
